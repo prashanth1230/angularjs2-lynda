@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 
 @Component({
     selector: 'mw-media-item',
@@ -6,9 +6,19 @@ import {Component} from '@angular/core';
     styleUrls: ['app/media-item.component.css']
 })
 export class MediaItemComponent {
-    name: string = 'The Redemption';
-
-    wasWatched() {
-        return true;
-    };
+    @Input() mediaItem: MediaItem;
+    @Output() delete = new EventEmitter();
+    onDelete() {
+        alert('Deleted!');
+        this.delete.emit(this.mediaItem);
+    }
+}
+export interface MediaItem {
+    id: number;
+    name: string;
+    medium: string;
+    category: string;
+    year: number;
+    watchedOn: number;
+    isFavorite: boolean;
 }
