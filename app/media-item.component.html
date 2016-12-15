@@ -1,4 +1,4 @@
-<h2>{{mediaItem.name | slice: 0: 10 | uppercase}}</h2>
+<h2>{{mediaItem.name}}</h2>
 <div *ngIf="mediaItem.watchedOn">watched on {{mediaItem.watchedOn | date: 'shortDate'}}</div>
 <!-- Alternate way of using ngIf. Here the template tag is just syntactic sugar-->
 <template [ngIf]="mediaItem.category">
