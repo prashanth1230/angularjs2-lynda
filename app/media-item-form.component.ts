@@ -17,8 +17,21 @@ export class MediaItemFormComponent {
                 Validators.pattern('[\\w\\-\\s\\/]+')
             ])),
             category: new FormControl(''),
-            year: new FormControl('')
+            year: new FormControl('', this.yearValidator)
         });
+    }
+
+    yearValidator(control) {
+        if (control.value.trim().length === 0) {
+            return null;
+        }
+        let year: number = parseInt(control.value);
+        const MIN_YEAR: number = 1900;
+        const MAX_YEAR: number = 2100;
+        if (year >= MIN_YEAR && year <= MAX_YEAR) {
+            return null;
+        }
+        return { 'year': true };
     }
 
     onSubmit(mediaItem) {
